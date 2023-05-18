@@ -204,8 +204,8 @@ class Train(object):
 
 
 
-direc = "/home/gaurav/Downloads/new_trainset/" 
-testdirec = "/home/gaurav/Downloads/new_trainset/Test/"
+direc = "/home/sanath/Downloads/new_trainset/" 
+testdirec = "/home/sanath/Downloads/new_trainset/Test/"
 
 t = Train(num_speakers=10, directory = direc, frame_size=0.032, frame_shift=0.016)
 
