@@ -1,7 +1,12 @@
+#!/usr/bin/env python2
+# -*- coding: UTF-8 -*-
+# File: LPC.py
+# Date: Thu Mar 19 19:37:11 2015 +0800
+# Author: Yuxin Wu <ppwwyyxxc@gmail.com>
 
 import time
 #import scikits.talkbox as tb
-# from scikits.talkbox.linpred import levinson_lpc
+from scikits.talkbox.linpred import levinson_lpc
 from numpy import *
 from scipy.io import  wavfile
 from MFCC import hamming
@@ -33,14 +38,14 @@ class LPCExtractor(object):
         return -lpcc[1:]
 
     def lpcc(self, signal):
-        # lpc = levinson_lpc.lpc(signal, self.n_lpc)[0]
-        # return lpc[1:]
-        lpcc = self.lpc_to_cc(lpc)
-        return lpcc
+        lpc = levinson_lpc.lpc(signal, self.n_lpc)[0]
+        return lpc[1:]
+        #lpcc = self.lpc_to_cc(lpc)
+        #return lpcc
 
     def extract(self, signal):
         frames = (len(signal) - self.FRAME_LEN) / self.FRAME_SHIFT + 1
-        print ("frames = " + str(frames))
+        print "frames = " + str(frames)
         feature = []
         for f in xrange(frames):
             frame = signal[f * self.FRAME_SHIFT : f * self.FRAME_SHIFT +
@@ -59,13 +64,13 @@ def get_lpc_extractor(fs, win_length_ms=32, win_shift_ms=16,
     return ret
 
 
-def extract(fs, signal=None, diff=False,win_len = 32, win_shift = 16, **kwargs):
+def extract(fs, signal=None, diff=False, **kwargs):
     """accept two argument, or one as a tuple"""
     if signal is None:
         assert type(fs) == tuple
         fs, signal = fs[0], fs[1]
     signal = cast['float'](signal)
-    ret = get_lpc_extractor(fs, win_length_ms = win_len, win_shift_ms= win_shift, **kwargs).extract(signal)
+    ret = get_lpc_extractor(fs, **kwargs).extract(signal)
     if diff:
         return diff_feature(ret)
     return ret
@@ -74,7 +79,7 @@ if __name__ == "__main__":
     extractor = LPCCExtractor(8000)
     fs, signal = wavfile.read("../corpus.silence-removed/Style_Reading/f_001_03.wav")
     start = time.time()
-    ret = extractor.extract(signal, win_len = 32, win_shift= 16)
-    print (len(ret))
-    print (len(ret[0]))
-    print (time.time() - start)
+    ret = extractor.extract(signal)
+    print len(ret)
+    print len(ret[0])
+    print time.time() - start
