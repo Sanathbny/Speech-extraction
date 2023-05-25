@@ -32,3 +32,6 @@ There are two modes to run the program :-
 The basic architecture of the program remains the same for both the files.
 
 
+## Screenshots:
+### Computer View
+![alt text](https://github.com/Sanathbny/Portfolio-github/blob/master/images/portfolio/portfolio_website.JPG)
