@@ -33,5 +33,5 @@ The basic architecture of the program remains the same for both the files.
 
 
 ## Screenshots:
-### Computer View
-![alt text](https://github.com/Sanathbny/Portfolio-github/blob/master/images/portfolio/portfolio_website.JPG)
+
+![alt text](https://github.com/Sanathbny/Speech-extraction/blob/main/SP18-POSTER.jpg)
